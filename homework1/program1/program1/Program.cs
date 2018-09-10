@@ -11,10 +11,10 @@ namespace program1
         static void Main(string[] args)
         {
             Console.WriteLine("请输入两个数字以求乘积：");
-            int a, b;
-            a = int.Parse(Console.ReadLine());
-            b = int.Parse(Console.ReadLine());
-            int result = a * b;
+            double a, b;
+            a = double.Parse(Console.ReadLine());
+            b = double.Parse(Console.ReadLine());
+            double result = a * b;
             Console.WriteLine(a + "和" + b + "的乘积为：" + result);
             Console.WriteLine("按下任意键结束");
             Console.ReadKey();
