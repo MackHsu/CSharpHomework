@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace program2
 {
+    public class OrderException: Exception
+    {
+        public OrderException(string message) : base(message)
+        { }
+
+        public OrderException() : base()
+        { }
+    }
+
     class Order: OrderDetails
     {
         public String ID { get; set; }              //订单号
@@ -34,16 +43,27 @@ namespace program2
                 DisplayOrder(order);
         }
 
-        public bool IsUnique(String newID)            //检查订单号是否重复
+        public void CheckIDInput(String newID)        //检查输入的订单号是否为数字，若不是则抛出异常
+        {
+            try
+            {
+                int temp = Int32.Parse(newID);
+            }
+            catch (System.FormatException)
+            {
+                throw new OrderException("错误！请输入数字串作为订单号");
+            }
+        }
+
+        public void IsUnique(String newID)            //检查订单号是否重复
         {
             foreach(Order order in orders)
             {
                 if(order.ID==newID)
                 {
-                    return false;
+                    throw new OrderException("错误！订单号已存在");
                 }
             }
-            return true;
         }
 
         public void AddOrder()                  //添加新订单
@@ -51,8 +71,10 @@ namespace program2
             Order newOrder = new Order();
             Console.WriteLine("请输入订单号：");
             String newID = Console.ReadLine();
-            if (IsUnique(newID))                   //确保订单号唯一，如果没有重复则继续输入，如果重复则结束输入且不添加新订单
+            try
             {
+                CheckIDInput(newID);            //确保订单号为数字串
+                IsUnique(newID);                //确保订单号唯一，如果没有重复则继续输入，如果重复则结束输入且不添加新订单
                 newOrder.ID = newID;
                 Console.WriteLine("请输入商品名：");
                 newOrder.ProductName = Console.ReadLine();
@@ -61,10 +83,11 @@ namespace program2
                 orders.Add(newOrder);
                 Console.WriteLine("操作后订单列表：");
                 DisplayOrderList();
+
             }
-            else
+            catch (OrderException e)
             {
-                Console.WriteLine("错误！该订单号已存在！");
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -73,21 +96,29 @@ namespace program2
             bool deleted = false;          //是否已经删除
             Console.WriteLine("请输入要删除的订单的订单号：");
             String ID = Console.ReadLine();
-            foreach(Order order in orders)
+            try
             {
-                if(order.ID==ID)
+                CheckIDInput(ID);
+                foreach (Order order in orders)
                 {
-                    orders.Remove(order);
-                    deleted = true;
-                    break;
+                    if (order.ID == ID)
+                    {
+                        orders.Remove(order);
+                        deleted = true;
+                        break;
+                    }
+                }
+                if (!deleted)
+                    throw new OrderException("错误！找不到该订单");
+                else
+                {
+                    Console.WriteLine("操作后订单列表：");
+                    DisplayOrderList();
                 }
             }
-            if (!deleted)
-                Console.WriteLine("错误！找不到订单！");
-            else
+            catch(OrderException e)
             {
-                Console.WriteLine("操作后订单列表：");
-                DisplayOrderList();
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -100,23 +131,23 @@ namespace program2
             Console.WriteLine("3.客户名");
             try
             {
-                flag = Int32.Parse(Console.ReadLine());
-                if (flag < 0 || flag > 3)
-                    Console.WriteLine("错误！输入有误！");
+                flag = Int32.Parse(Console.ReadLine());         //若输入不是数字则抛出异常
+                if (flag < 1 || flag > 3)
+                    throw new OrderException();                 //若输入不在1到3之内则抛出异常
                 else
                 {
-                    switch(flag)
+                    switch (flag)
                     {
                         case 1:
-                            SearchByID();           break;
+                            SearchByID(); break;
                         case 2:
-                            SearchByProductName();  break;
+                            SearchByProductName(); break;
                         case 3:
-                            SearchByClientName();   break;
+                            SearchByClientName(); break;
                     }
                 }
             }
-            catch(System.FormatException)
+            catch(Exception)
             {
                 Console.WriteLine("错误！输入有误！");
             }
@@ -127,18 +158,26 @@ namespace program2
             bool found = false;             //是否查询到订单
             Console.WriteLine("请输入订单号：");
             String ID = Console.ReadLine();
-            Console.WriteLine("查询结果：");
-            foreach(Order order in orders)
+            try                             //检查是否输入合法的订单号
             {
-                if(order.ID==ID)
+                CheckIDInput(ID);
+                foreach(Order order in orders)
                 {
-                    DisplayOrder(order);
-                    found = true;
-                    break;                  //由于订单号唯一，查询到即可退出循环
+                    if(order.ID==ID)
+                    {
+                        Console.WriteLine("查询结果：");
+                        DisplayOrder(order);
+                        found = true;
+                        break;                  //由于订单号唯一，查询到即可退出循环
+                    }
                 }
+                if (!found)
+                    throw new OrderException("错误！未找到该订单");
+                }
+            catch (OrderException e)
+            {
+                Console.WriteLine(e.Message);
             }
-            if (!found)
-                Console.WriteLine("错误！找不到订单！");
         }
 
         public void SearchByProductName()       //通过商品名查询订单
@@ -147,16 +186,23 @@ namespace program2
             Console.WriteLine("请输入商品名：");
             String productName = Console.ReadLine();
             Console.WriteLine("查询结果：");
-            foreach(Order order in orders)
+            try
             {
-                if(order.ProductName==productName)
+                foreach (Order order in orders)
                 {
-                    DisplayOrder(order);
-                    found = true;
+                    if (order.ProductName == productName)
+                    {
+                        DisplayOrder(order);
+                        found = true;
+                    }
                 }
+                if (!found)
+                    throw new OrderException("错误！找不到订单");
             }
-            if (!found)
-                Console.WriteLine("错误！找不到订单！");
+            catch(OrderException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void SearchByClientName()            //通过客户名查询订单
@@ -165,16 +211,23 @@ namespace program2
             Console.WriteLine("请输入客户名：");
             String clientName = Console.ReadLine();
             Console.WriteLine("查询结果：");
-            foreach(Order order in orders)
+            try
             {
-                if(order.ClientName==clientName)
+                foreach (Order order in orders)
                 {
-                    DisplayOrder(order);
-                    found = true;
+                    if (order.ClientName == clientName)
+                    {
+                        DisplayOrder(order);
+                        found = true;
+                    }
                 }
+                if (!found)
+                    throw new OrderException("错误！找不到订单");
             }
-            if (!found)
-                Console.WriteLine("错误！找不到订单！");
+            catch(OrderException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         public void ReviseOrder()                   //通过订单号修改订单
@@ -182,29 +235,40 @@ namespace program2
             bool found = false;                     //是否找到订单
             Console.WriteLine("请输入订单号：");
             String ID = Console.ReadLine();
-            Order temp = null;
-            foreach(Order order in orders)
+            try
             {
-                if (order.ID == ID)
+                CheckIDInput(ID);                   //检查是否输入数字串
+                Order temp = null;
+                foreach (Order order in orders)
                 {
-                    temp = order;
-                    found = true;
-                    break;
+                    if (order.ID == ID)
+                    {
+                        temp = order;
+                        found = true;
+                        break;
+                    }
                 }
+                if (found)
+                {
+                    Console.WriteLine("请输入新的订单号：");
+                    String newID = Console.ReadLine();
+                    CheckIDInput(newID);                    //确保新订单号是数字串
+                    IsUnique(newID);                        //确保新订单号没有重复
+                    temp.ID = newID;
+                    Console.WriteLine("请输入新的商品名：");
+                    temp.ProductName = Console.ReadLine();
+                    Console.WriteLine("请输入新的客户名：");
+                    temp.ClientName = Console.ReadLine();
+                    Console.WriteLine("新的订单：");
+                    DisplayOrder(temp);
+                }
+                else
+                    throw new OrderException("错误！找不到订单");
             }
-            if (found)
+            catch(OrderException e)
             {
-                Console.WriteLine("请输入新的订单号：");
-                temp.ID = Console.ReadLine();
-                Console.WriteLine("请输入新的商品名：");
-                temp.ProductName = Console.ReadLine();
-                Console.WriteLine("请输入新的客户名：");
-                temp.ClientName = Console.ReadLine();
-                Console.WriteLine("新的订单：");
-                DisplayOrder(temp);
+                Console.WriteLine(e.Message);
             }
-            else
-                Console.WriteLine("错误！订单列表中没有此订单号！");
         }
     }
 
@@ -227,29 +291,29 @@ namespace program2
                 {
                     flag = Int32.Parse(Console.ReadLine());
                     if (flag < 1 || flag > 6)
-                        Console.WriteLine("错误！请输入正确的数字");
+                        throw new OrderException();
                     else
                     {
                         switch (flag)
                         {
                             case 1:
-                                orderService.AddOrder();            break;
+                                orderService.AddOrder(); break;
                             case 2:
-                                orderService.DeleteOrder();         break;
+                                orderService.DeleteOrder(); break;
                             case 3:
-                                orderService.Search();              break;
+                                orderService.Search(); break;
                             case 4:
-                                orderService.ReviseOrder();         break;
+                                orderService.ReviseOrder(); break;
                             case 5:
-                                orderService.DisplayOrderList();    break;
+                                orderService.DisplayOrderList(); break;
                             case 6:
                                 return;
                         }
                     }
                 }
-                catch(System.FormatException)
+                catch(Exception)
                 {
-                    Console.WriteLine("错误！请输入正确的数字");
+                    Console.WriteLine("错误！输入有误");
                 }
             }
         }
