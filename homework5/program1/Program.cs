@@ -191,7 +191,6 @@ namespace program2
             bool found = false;                 //是否查询到订单
             Console.WriteLine("请输入商品名：");
             String productName = Console.ReadLine();
-            Console.WriteLine("查询结果：");
             try
             {
                 var results = from order in orders where order.ProductName == productName select order;
@@ -217,7 +216,6 @@ namespace program2
             bool found = false;                     //是否查询到订单
             Console.WriteLine("请输入金额：");
             String clientName = Console.ReadLine();
-            Console.WriteLine("查询结果：");
             try
             {
                 var results = from order in orders where order.ClientName == clientName select order;
@@ -243,7 +241,6 @@ namespace program2
             bool found = false;                     //是否查询到订单
             Console.WriteLine("请输入金额：");
             long money = long.Parse(Console.ReadLine());
-            Console.WriteLine("查询结果：");
             try
             {
                 var results = from order in orders where order.Money > money select order;
