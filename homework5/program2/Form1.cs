@@ -29,6 +29,7 @@ namespace program2
         double per1 = 0.6;
         double per2 = 0.7;
         double k = 1;
+        String color = "蓝色";
 
         void drawCayleyTree(int n, double x0, double y0, double leng, double th)
         {
@@ -46,7 +47,13 @@ namespace program2
 
         void drawLine(double x0, double y0, double x1, double y1)
         {
-            graphics.DrawLine(Pens.Blue, (int)x0, (int)y0, (int)x1, (int)y1);
+            switch (color)
+            {
+                case "黑色":  graphics.DrawLine(Pens.Black, (int)x0, (int)y0, (int)x1, (int)y1);  break;
+                case "蓝色":  graphics.DrawLine(Pens.Blue, (int)x0, (int)y0, (int)x1, (int)y1);   break;
+                case "红色":  graphics.DrawLine(Pens.Red, (int)x0, (int)y0, (int)x1, (int)y1);    break;
+                case "绿色":  graphics.DrawLine(Pens.Green, (int)x0, (int)y0, (int)x1, (int)y1);  break;
+             }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -62,6 +69,11 @@ namespace program2
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             per2 = double.Parse(textBox3.Text);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            color = comboBox1.Text;
         }
     }
 }
