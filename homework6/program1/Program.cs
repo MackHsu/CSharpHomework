@@ -56,7 +56,7 @@ namespace program2
             Console.WriteLine("========================\n");
         }
 
-        public void CheckIDInput(String newID)        //检查输入的订单号是否为数字，若不是则抛出异常
+        public static void CheckIDInput(String newID)        //检查输入的订单号是否为数字，若不是则抛出异常
         {
             try
             {
