@@ -127,8 +127,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxID);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AddOrderForm";
-            this.Text = "AddOrderForm";
+            this.Text = "请输入订单信息";
             this.ResumeLayout(false);
             this.PerformLayout();
 

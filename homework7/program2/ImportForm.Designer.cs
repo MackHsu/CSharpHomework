@@ -68,8 +68,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ImportForm";
-            this.Text = "ImportForm";
+            this.Text = "请输入文件路径";
             this.ResumeLayout(false);
             this.PerformLayout();
 

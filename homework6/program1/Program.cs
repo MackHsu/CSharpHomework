@@ -243,6 +243,28 @@ namespace program2
             }
         }
 
+        public void ReviseOrderForForm(String oldID, String newID, String newProductName, String newClientName, long newMoney)            //窗体应用程序使用的修改订单方法
+        {
+            CheckIDInput(oldID);
+            CheckIDInput(newID);
+            foreach (Order order in orders)
+            {
+                if (order.ID == oldID)
+                {
+                    Order temp = order;
+                    orders.Remove(order);
+                    IsUnique(newID);
+                    temp.ID = newID;
+                    temp.ProductName = newProductName;
+                    temp.ClientName = newClientName;
+                    temp.Money = newMoney;
+                    orders.Add(temp);
+                    return;
+                }
+            }
+            throw new OrderException("错误！找不到该订单");
+        }
+
         public void Export(String fileName)               //将订单列表序列化为XML文件
         {
             XmlSerializer xmlser = new XmlSerializer(typeof(List<Order>));
