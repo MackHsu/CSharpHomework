@@ -18,9 +18,7 @@ namespace program2
         {
             InitializeComponent();
 
-            orderService.AddOrder(new Order("1", "2", "3", 4));
             orderServiceBindingSource.DataSource = new BindingList<Order>(orderService.orders);
-            orderService.AddOrder(new Order("2", "2", "3", 4));
         }
 
         private void buttonDiserialize_Click(object sender, EventArgs e)
@@ -30,6 +28,11 @@ namespace program2
             try
             {
                 orderService.Import(importForm.FileName);
+            }
+            catch (System.IO.FileNotFoundException error)
+            {
+                ErrorForm errorForm = new ErrorForm(error.Message);
+                errorForm.ShowDialog();
             }
             catch (System.ArgumentNullException) { }
             finally
@@ -46,6 +49,11 @@ namespace program2
             {
                 orderService.AddOrder(new Order(addOrderForm.ID, addOrderForm.ProductName1, addOrderForm.ClientName, long.Parse(addOrderForm.Money)));
             }
+            catch(OrderException error)
+            {
+                ErrorForm errorForm = new ErrorForm(error.Message);
+                errorForm.ShowDialog();
+            }
             catch { }
             finally
             {
@@ -60,6 +68,11 @@ namespace program2
             try
             {
                 orderService.DeleteOrder(deleteOrderForm.ID);
+            }
+            catch (OrderException error)
+            {
+                ErrorForm errorForm = new ErrorForm(error.Message);
+                errorForm.ShowDialog();
             }
             catch { }
             finally
@@ -76,6 +89,11 @@ namespace program2
             {
                 orderService.ReviseOrderForForm(reviseOrderForm.OldID, reviseOrderForm.NewID, reviseOrderForm.newProductName, reviseOrderForm.newClientName, reviseOrderForm.newMoney);
             }
+            catch (OrderException error)
+            {
+                ErrorForm errorForm = new ErrorForm(error.Message);
+                errorForm.ShowDialog();
+            }
             catch { }
             finally
             {
@@ -90,6 +108,11 @@ namespace program2
             try
             {
                 orderService.Export(importForm.FileName);
+            }
+            catch (UnauthorizedAccessException error)
+            {
+                ErrorForm errorForm = new ErrorForm(error.Message);
+                errorForm.ShowDialog();
             }
             catch { }
             finally

@@ -64,7 +64,7 @@ namespace program2
             }
             catch (System.FormatException)
             {
-                throw new OrderException("错误！请输入数字串作为订单号");
+                throw new OrderException("错误！请输入非空数字串作为订单号。");
             }
         }
 
@@ -74,7 +74,7 @@ namespace program2
             {
                 if (order.ID == newID)
                 {
-                    throw new OrderException("错误！订单号已存在");
+                    throw new OrderException("错误！该订单号已存在。");
                 }
             }
         }
@@ -100,7 +100,7 @@ namespace program2
                 }
             }
             if (!deleted)
-                throw new OrderException("错误！找不到该订单");
+                throw new OrderException("错误！找不到该订单。");
         }
 
         public void Search(int flag)                 //查询订单，在此调用SearchByID()、SearchByProductName()或者SearchByClientName()
@@ -138,7 +138,7 @@ namespace program2
             if (results.Any())
                 found = true;
             if (!found)
-                throw new OrderException("错误！未找到该订单");
+                throw new OrderException("错误！未找到该订单。");
             else
             {
                 Console.WriteLine("查询结果：");
@@ -154,7 +154,7 @@ namespace program2
             if (results.Any())
                 found = true;
             if (!found)
-                throw new OrderException("错误！未找到该订单");
+                throw new OrderException("错误！未找到该订单。");
             else
             {
                 Console.WriteLine("查询结果：");
@@ -172,7 +172,7 @@ namespace program2
                 if (results.Any())
                     found = true;
                 if (!found)
-                    throw new OrderException("错误！未找到该订单");
+                    throw new OrderException("错误！未找到该订单。");
                 else
                 {
                     Console.WriteLine("查询结果：");
@@ -193,7 +193,7 @@ namespace program2
                 if (results.Any())
                     found = true;
             if (!found)
-                throw new OrderException("错误！未找到该订单");
+                throw new OrderException("错误！未找到该订单。");
             else
             {
                 Console.WriteLine("查询结果：");
@@ -235,7 +235,7 @@ namespace program2
                     temp.ClientName = Console.ReadLine();
                 }
                 else
-                    throw new OrderException("错误！找不到订单");
+                    throw new OrderException("错误！找不到订单。");
             }
             catch (OrderException e)
             {
@@ -262,7 +262,7 @@ namespace program2
                     return;
                 }
             }
-            throw new OrderException("错误！找不到该订单");
+            throw new OrderException("错误！找不到该订单。");
         }
 
         public void Export(String fileName)               //将订单列表序列化为XML文件
