@@ -47,7 +47,7 @@ namespace program2
             addOrderForm.ShowDialog();
             try
             {
-                orderService.AddOrder(new Order(addOrderForm.ID, addOrderForm.ProductName1, addOrderForm.ClientName, long.Parse(addOrderForm.Money)));
+                orderService.AddOrder(new Order(addOrderForm.ID, addOrderForm.ProductName1, addOrderForm.ClientName, addOrderForm.ClientPhone, long.Parse(addOrderForm.Money)));
             }
             catch(OrderException error)
             {
@@ -87,7 +87,7 @@ namespace program2
             reviseOrderForm.ShowDialog();
             try
             {
-                orderService.ReviseOrderForForm(reviseOrderForm.OldID, reviseOrderForm.NewID, reviseOrderForm.newProductName, reviseOrderForm.newClientName, reviseOrderForm.newMoney);
+                orderService.ReviseOrderForForm(reviseOrderForm.OldID, reviseOrderForm.NewID, reviseOrderForm.newProductName, reviseOrderForm.newClientName, reviseOrderForm.newClientPhone, reviseOrderForm.newMoney);
             }
             catch (OrderException error)
             {

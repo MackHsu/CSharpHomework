@@ -23,9 +23,9 @@ namespace program2
     {
         public String ID { get; set; }              //订单号
         public Order() { }
-        public Order(String ID, String productName,String clientName,long money)
+        public Order(String ID, String productName,String clientName,String clientPhone,long money)
         {
-            this.ID = ID; ProductName = productName; ClientName = clientName; Money = money;
+            this.ID = ID; ProductName = productName; ClientName = clientName; ClientPhone = clientPhone; Money = money;
         }
     }
 
@@ -34,6 +34,7 @@ namespace program2
     {
         public String ProductName { get; set; }     //商品名
         public String ClientName { get; set; }      //客户名
+        public String ClientPhone { get; set; }     //客户电话号码
         public long Money { get; set; }           //订单金额
     }
 
@@ -60,12 +61,28 @@ namespace program2
         {
             try
             {
-                int temp = Int32.Parse(newID);
+                long temp = long.Parse(newID);
             }
             catch (System.FormatException)
             {
-                throw new OrderException("错误！请输入非空数字串作为订单号。");
+                throw new OrderException("错误！请输入年、月、日和三位流水号组成的11位数字作为订单号。");
             }
+                if(newID.Length!=11)
+                    throw new OrderException("错误！请输入年、月、日和三位流水号组成的11位数字作为订单号。");
+        }
+
+        public static void CheckPhoneInput(String newClientPhone)        //检查输入的订单号是否为数字，若不是则抛出异常
+        {
+            try
+            {
+                long temp = long.Parse(newClientPhone);
+            }
+            catch (System.FormatException)
+            {
+                throw new OrderException("错误！请输入11位数字作为手机号。");
+            }
+            if (newClientPhone.Length != 11)
+                throw new OrderException("错误！请输入11位数字作为手机号。");
         }
 
         public void IsUnique(String newID)            //检查订单号是否重复
@@ -82,6 +99,7 @@ namespace program2
         public void AddOrder(Order newOrder)                  //添加新订单
         {
             CheckIDInput(newOrder.ID);            //确保订单号为数字串
+            CheckPhoneInput(newOrder.ClientPhone);      //检查手机号
             IsUnique(newOrder.ID);                //确保订单号唯一，如果没有重复则继续输入，如果重复则结束输入且不添加新订单
             orders.Add(newOrder);
         }
@@ -230,9 +248,12 @@ namespace program2
                     Console.WriteLine("请输入新的商品名：");
                     temp.ProductName = Console.ReadLine();
                     Console.WriteLine("请输入新的客户名：");
+                    temp.ClientName = Console.ReadLine();
+                    Console.WriteLine("请输入新的客户手机号码：");
+                    temp.ClientPhone = Console.ReadLine();
                     Console.WriteLine("新的订单：");
                     DisplayOrder(temp);
-                    temp.ClientName = Console.ReadLine();
+                    
                 }
                 else
                     throw new OrderException("错误！找不到订单。");
@@ -243,7 +264,7 @@ namespace program2
             }
         }
 
-        public void ReviseOrderForForm(String oldID, String newID, String newProductName, String newClientName, long newMoney)            //窗体应用程序使用的修改订单方法
+        public void ReviseOrderForForm(String oldID, String newID, String newProductName, String newClientName, String newClientPhone, long newMoney)            //窗体应用程序使用的修改订单方法
         {
             CheckIDInput(oldID);
             CheckIDInput(newID);
@@ -257,6 +278,7 @@ namespace program2
                     temp.ID = newID;
                     temp.ProductName = newProductName;
                     temp.ClientName = newClientName;
+                    temp.ClientPhone = newClientPhone;
                     temp.Money = newMoney;
                     orders.Add(temp);
                     return;
@@ -327,9 +349,11 @@ namespace program2
                                     String productName = Console.ReadLine();
                                     Console.WriteLine("请输入客户名：");
                                     String clientName = Console.ReadLine();
+                                    Console.WriteLine("请输入客户电话号码：");
+                                    String clientPhone = Console.ReadLine();
                                     Console.WriteLine("请输入订单金额：");
                                     long money = long.Parse(Console.ReadLine());
-                                    Order newOrder = new Order(ID, productName, clientName, money);
+                                    Order newOrder = new Order(ID, productName, clientName, clientPhone, money);
                                     orderService.AddOrder(newOrder);
                                     Console.WriteLine("操作后订单列表：");
                                     orderService.DisplayOrderList();

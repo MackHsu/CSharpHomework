@@ -37,6 +37,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxMoney = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxClientPhone = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -50,9 +52,9 @@
             // 
             // textBoxID
             // 
-            this.textBoxID.Location = new System.Drawing.Point(89, 9);
+            this.textBoxID.Location = new System.Drawing.Point(151, 9);
             this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(379, 25);
+            this.textBoxID.Size = new System.Drawing.Size(317, 25);
             this.textBoxID.TabIndex = 1;
             // 
             // label2
@@ -66,10 +68,10 @@
             // 
             // textBoxProductName
             // 
-            this.textBoxProductName.Location = new System.Drawing.Point(89, 42);
+            this.textBoxProductName.Location = new System.Drawing.Point(151, 42);
             this.textBoxProductName.Name = "textBoxProductName";
-            this.textBoxProductName.Size = new System.Drawing.Size(379, 25);
-            this.textBoxProductName.TabIndex = 3;
+            this.textBoxProductName.Size = new System.Drawing.Size(317, 25);
+            this.textBoxProductName.TabIndex = 2;
             // 
             // label3
             // 
@@ -82,15 +84,15 @@
             // 
             // textBoxClientName
             // 
-            this.textBoxClientName.Location = new System.Drawing.Point(90, 74);
+            this.textBoxClientName.Location = new System.Drawing.Point(151, 74);
             this.textBoxClientName.Name = "textBoxClientName";
-            this.textBoxClientName.Size = new System.Drawing.Size(378, 25);
-            this.textBoxClientName.TabIndex = 5;
+            this.textBoxClientName.Size = new System.Drawing.Size(317, 25);
+            this.textBoxClientName.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 111);
+            this.label4.Location = new System.Drawing.Point(16, 139);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 15);
             this.label4.TabIndex = 6;
@@ -98,14 +100,14 @@
             // 
             // textBoxMoney
             // 
-            this.textBoxMoney.Location = new System.Drawing.Point(89, 108);
+            this.textBoxMoney.Location = new System.Drawing.Point(151, 136);
             this.textBoxMoney.Name = "textBoxMoney";
-            this.textBoxMoney.Size = new System.Drawing.Size(379, 25);
-            this.textBoxMoney.TabIndex = 7;
+            this.textBoxMoney.Size = new System.Drawing.Size(317, 25);
+            this.textBoxMoney.TabIndex = 5;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(384, 151);
+            this.button1.Location = new System.Drawing.Point(384, 175);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(84, 28);
             this.button1.TabIndex = 8;
@@ -113,11 +115,29 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 108);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(112, 15);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "客户手机号码：";
+            // 
+            // textBoxClientPhone
+            // 
+            this.textBoxClientPhone.Location = new System.Drawing.Point(151, 105);
+            this.textBoxClientPhone.Name = "textBoxClientPhone";
+            this.textBoxClientPhone.Size = new System.Drawing.Size(317, 25);
+            this.textBoxClientPhone.TabIndex = 4;
+            // 
             // AddOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 195);
+            this.ClientSize = new System.Drawing.Size(489, 215);
+            this.Controls.Add(this.textBoxClientPhone);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxMoney);
             this.Controls.Add(this.label4);
@@ -146,5 +166,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxMoney;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxClientPhone;
     }
 }

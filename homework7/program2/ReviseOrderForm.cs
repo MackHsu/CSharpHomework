@@ -16,6 +16,8 @@ namespace program2
         public String NewID { get; set; }
         public String newProductName { get; set; }
         public String newClientName { get; set; }
+        public String newClientPhone { get; set; }
+
         public long newMoney;
 
         public ReviseOrderForm()
@@ -33,6 +35,7 @@ namespace program2
                 NewID = addOrderForm.ID;
                 newProductName = addOrderForm.ProductName1;
                 newClientName = addOrderForm.ClientName;
+                newClientPhone = addOrderForm.ClientPhone;
                 newMoney = long.Parse(addOrderForm.Money);
             }
             catch { }

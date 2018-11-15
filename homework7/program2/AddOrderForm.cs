@@ -15,6 +15,7 @@ namespace program2
         public String ID { set; get; }
         public String ProductName1 { get; set; }
         public String ClientName { set; get; }
+        public String ClientPhone { get; set; }
         public String Money { set; get; }
 
 
@@ -28,6 +29,7 @@ namespace program2
             ID=textBoxID.Text;
             ProductName1=textBoxProductName.Text;
             ClientName=textBoxClientName.Text;
+            ClientPhone = textBoxClientPhone.Text;
             Money=textBoxMoney.Text;
             Close();
         }
