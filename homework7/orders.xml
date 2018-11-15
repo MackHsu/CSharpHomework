@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <ProductName>candy</ProductName>
+    <ClientName>Mack</ClientName>
+    <ClientPhone>12345678900</ClientPhone>
+    <Money>10</Money>
+    <ID>20181114001</ID>
+  </Order>
+  <Order>
+    <ProductName>tissue</ProductName>
+    <ClientName>Lindsey</ClientName>
+    <ClientPhone>12345678901</ClientPhone>
+    <Money>10</Money>
+    <ID>20181111002</ID>
+  </Order>
+  <Order>
+    <ProductName>computer</ProductName>
+    <ClientName>Todd</ClientName>
+    <ClientPhone>12345678902</ClientPhone>
+    <Money>5000</Money>
+    <ID>20181115001</ID>
+  </Order>
+</ArrayOfOrder>

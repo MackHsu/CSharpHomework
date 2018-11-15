@@ -83,6 +83,12 @@
     <Compile Include="ReviseOrderForm.Designer.cs">
       <DependentUpon>ReviseOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToHTMLForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToHTMLForm.Designer.cs">
+      <DependentUpon>ToHTMLForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddOrderForm.resx">
       <DependentUpon>AddOrderForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +115,9 @@
     </Compile>
     <EmbeddedResource Include="ReviseOrderForm.resx">
       <DependentUpon>ReviseOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToHTMLForm.resx">
+      <DependentUpon>ToHTMLForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\AddOrderForm.datasource" />
     <None Include="Properties\DataSources\Form1.datasource" />

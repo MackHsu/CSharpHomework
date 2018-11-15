@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.XPath;
+using System.Xml.Xsl;
 
 namespace program2
 {
@@ -29,12 +32,12 @@ namespace program2
             {
                 orderService.Import(importForm.FileName);
             }
-            catch (System.IO.FileNotFoundException error)
+            catch(ArgumentNullException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (Exception error)
             {
                 ErrorForm errorForm = new ErrorForm(error.Message);
                 errorForm.ShowDialog();
             }
-            catch (System.ArgumentNullException) { }
             finally
             {
                 orderServiceBindingSource.DataSource = new BindingList<Order>(orderService.orders);
@@ -49,12 +52,13 @@ namespace program2
             {
                 orderService.AddOrder(new Order(addOrderForm.ID, addOrderForm.ProductName1, addOrderForm.ClientName, addOrderForm.ClientPhone, long.Parse(addOrderForm.Money)));
             }
-            catch(OrderException error)
+            catch(FormatException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (ArgumentNullException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (Exception error)
             {
                 ErrorForm errorForm = new ErrorForm(error.Message);
                 errorForm.ShowDialog();
             }
-            catch { }
             finally
             {
                 orderServiceBindingSource.DataSource = new BindingList<Order>(orderService.orders);
@@ -69,12 +73,13 @@ namespace program2
             {
                 orderService.DeleteOrder(deleteOrderForm.ID);
             }
-            catch (OrderException error)
+            catch (FormatException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (ArgumentNullException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (Exception error)
             {
                 ErrorForm errorForm = new ErrorForm(error.Message);
                 errorForm.ShowDialog();
             }
-            catch { }
             finally
             {
                 orderServiceBindingSource.DataSource = new BindingList<Order>(orderService.orders);
@@ -89,12 +94,13 @@ namespace program2
             {
                 orderService.ReviseOrderForForm(reviseOrderForm.OldID, reviseOrderForm.NewID, reviseOrderForm.newProductName, reviseOrderForm.newClientName, reviseOrderForm.newClientPhone, reviseOrderForm.newMoney);
             }
-            catch (OrderException error)
+            catch (FormatException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (ArgumentNullException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (Exception error)
             {
                 ErrorForm errorForm = new ErrorForm(error.Message);
                 errorForm.ShowDialog();
             }
-            catch { }
             finally
             {
                 orderServiceBindingSource.DataSource = new BindingList<Order>(orderService.orders);
@@ -109,12 +115,12 @@ namespace program2
             {
                 orderService.Export(importForm.FileName);
             }
-            catch (UnauthorizedAccessException error)
+            catch (ArgumentNullException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (Exception error)
             {
                 ErrorForm errorForm = new ErrorForm(error.Message);
                 errorForm.ShowDialog();
             }
-            catch { }
             finally
             {
                 orderServiceBindingSource.DataSource = new BindingList<Order>(orderService.orders);
@@ -144,6 +150,22 @@ namespace program2
         private void buttonViewAll_Click(object sender, EventArgs e)
         {
             orderServiceBindingSource.DataSource = new BindingList<Order>(orderService.orders);
+        }
+
+        private void buttonToHTML_Click(object sender, EventArgs e)
+        {
+            ToHTMLForm toHTMLForm = new ToHTMLForm();
+            toHTMLForm.ShowDialog();
+            try
+            {
+                orderService.ToHTML(toHTMLForm.XmlFileName, toHTMLForm.XsltFileName, toHTMLForm.HtmlFileName);
+            }
+            catch (ArgumentNullException) { }      //点弹窗的关闭时不弹出错误窗口
+            catch (Exception error)
+            {
+                ErrorForm errorForm = new ErrorForm(error.Message);
+                errorForm.ShowDialog();
+            }
         }
     }
 }

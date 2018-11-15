@@ -7,6 +7,9 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using System.Xml;
+using System.Xml.XPath;
+using System.Xml.Xsl;
 
 namespace program2
 {
@@ -308,6 +311,23 @@ namespace program2
                 orders = (List<Order>)xmlser.Deserialize(fs);
             }
             DisplayOrderList();
+        }
+
+        public void ToHTML(String xmlFileName, String xsltFileName, String htmlFileName)      //将xml通过xslt转为html
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(xmlFileName);
+
+            XPathNavigator nav = doc.CreateNavigator();
+            nav.MoveToRoot();
+
+            XslCompiledTransform xt = new XslCompiledTransform();
+            xt.Load(xsltFileName);
+
+            FileStream outFileStream = File.OpenWrite(htmlFileName);
+            XmlTextWriter writer =
+                new XmlTextWriter(outFileStream, System.Text.Encoding.UTF8);
+            xt.Transform(nav, null, writer);
         }
     }
 

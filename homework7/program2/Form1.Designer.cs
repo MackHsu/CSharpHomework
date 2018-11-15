@@ -36,6 +36,12 @@
             this.buttonReviseOrder = new System.Windows.Forms.Button();
             this.buttonSerialize = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.buttonViewAll = new System.Windows.Forms.Button();
@@ -51,13 +57,9 @@
             this.buttonSearchByID = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.orderServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonToHTML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -66,7 +68,6 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderServiceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonDiserialize
@@ -146,8 +147,47 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(736, 281);
+            this.dataGridView1.Size = new System.Drawing.Size(736, 318);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ID";
+            this.Column1.HeaderText = "订单号";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "ProductName";
+            this.Column2.HeaderText = "商品名";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "ClientName";
+            this.Column3.HeaderText = "客户名";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "ClientPhone";
+            this.Column5.HeaderText = "客户手机号码";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Money";
+            this.Column4.HeaderText = "金额";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // orderServiceBindingSource
+            // 
+            this.orderServiceBindingSource.DataSource = typeof(program2.OrderService);
             // 
             // splitContainer1
             // 
@@ -161,6 +201,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.buttonToHTML);
             this.splitContainer1.Panel2.Controls.Add(this.buttonSerialize);
             this.splitContainer1.Panel2.Controls.Add(this.buttonReviseOrder);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
@@ -168,7 +209,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.buttonAddOrder);
             this.splitContainer1.Panel2.Controls.Add(this.buttonDiserialize);
             this.splitContainer1.Panel2MinSize = 125;
-            this.splitContainer1.Size = new System.Drawing.Size(912, 281);
+            this.splitContainer1.Size = new System.Drawing.Size(912, 318);
             this.splitContainer1.SplitterDistance = 736;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -198,7 +239,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer1);
-            this.splitContainer2.Size = new System.Drawing.Size(912, 410);
+            this.splitContainer2.Size = new System.Drawing.Size(912, 447);
             this.splitContainer2.SplitterDistance = 125;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -320,55 +361,27 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "订单号：";
             // 
-            // orderServiceBindingSource
+            // buttonToHTML
             // 
-            this.orderServiceBindingSource.DataSource = typeof(program2.OrderService);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "订单号";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "ProductName";
-            this.Column2.HeaderText = "商品名";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "ClientName";
-            this.Column3.HeaderText = "客户名";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "ClientPhone";
-            this.Column5.HeaderText = "客户手机号码";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Money";
-            this.Column4.HeaderText = "金额";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.buttonToHTML.Location = new System.Drawing.Point(13, 236);
+            this.buttonToHTML.Name = "buttonToHTML";
+            this.buttonToHTML.Size = new System.Drawing.Size(145, 50);
+            this.buttonToHTML.TabIndex = 7;
+            this.buttonToHTML.Text = "将xml文件转换为html页面文件";
+            this.buttonToHTML.UseVisualStyleBackColor = true;
+            this.buttonToHTML.Click += new System.EventHandler(this.buttonToHTML_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(912, 410);
+            this.ClientSize = new System.Drawing.Size(912, 447);
             this.Controls.Add(this.splitContainer2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "订单管理器";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderServiceBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -379,7 +392,6 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.orderServiceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -413,6 +425,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Button buttonToHTML;
     }
 }
 

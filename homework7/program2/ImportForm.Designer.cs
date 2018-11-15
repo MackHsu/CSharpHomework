@@ -39,7 +39,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(347, 25);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "D:\\学习资料\\大二上\\C#\\orders.xml";
+            this.textBox1.Text = "..\\..\\..\\orders.xml";
             // 
             // label1
             // 

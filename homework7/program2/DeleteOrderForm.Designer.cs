@@ -46,12 +46,12 @@
             // 
             this.textBoxID.Location = new System.Drawing.Point(85, 23);
             this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(294, 25);
+            this.textBoxID.Size = new System.Drawing.Size(432, 25);
             this.textBoxID.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(295, 66);
+            this.button1.Location = new System.Drawing.Point(442, 66);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 25);
             this.button1.TabIndex = 2;
@@ -63,13 +63,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 103);
+            this.ClientSize = new System.Drawing.Size(529, 103);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxID);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DeleteOrderForm";
-            this.Text = "DeleteOrderForm";
+            this.Text = "请输入要操作的订单号";
             this.ResumeLayout(false);
             this.PerformLayout();
 

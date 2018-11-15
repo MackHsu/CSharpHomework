@@ -35,9 +35,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 60);
+            this.textBox1.Location = new System.Drawing.Point(82, 25);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(429, 25);
+            this.textBox1.Size = new System.Drawing.Size(359, 25);
             this.textBox1.TabIndex = 0;
             // 
             // label1
@@ -45,15 +45,15 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 15);
+            this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "要修改的订单的订单号：";
+            this.label1.Text = "订单号：";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(317, 107);
+            this.button1.Location = new System.Drawing.Point(376, 69);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 25);
+            this.button1.Size = new System.Drawing.Size(65, 25);
             this.button1.TabIndex = 2;
             this.button1.Text = "确定";
             this.button1.UseVisualStyleBackColor = true;
@@ -63,13 +63,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 166);
+            this.ClientSize = new System.Drawing.Size(453, 106);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ReviseOrderForm";
-            this.Text = "ReviseOrderForm";
+            this.Text = "请输入要操作的订单号";
             this.ResumeLayout(false);
             this.PerformLayout();
 
